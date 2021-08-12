@@ -1,6 +1,13 @@
 <?php
+echo "Enter the number to check palindromes: ";
+$inputNumber = readline ("input=");
 
-function isPalindrome(int $input)
+/**
+ * @param int $input
+ * @return int
+ */
+
+function isPalindrome(int $input): int
 {
     $binFlag = false;
     $octFlag = false;
@@ -12,11 +19,11 @@ function isPalindrome(int $input)
     $decNumber = $input;
     $hexNumber = dechex($input);
 
+    // checking palindrome in each  system
     $binNumber = strval($binNumber);
     $binNumber = preg_replace('/[^0-9.]+/', '', $binNumber);
     $reverseNumber = strrev($binNumber);
 
-    // checking palindrome in each number system
     if ($reverseNumber == $binNumber)
     {
         $binFlag = true;
@@ -51,23 +58,25 @@ function isPalindrome(int $input)
 
     if ($binFlag == true)
     {
-        echo ($input . " is a palindrome in binary system " . "(" . $binNumber . ") \n");
+        echo ($input . " is a palindrome in binary (2)  system " . "[" . $binNumber . "] \n");
     }
 
     if ($octFlag == true)
     {
-        echo ($input . " is a palindrome in octal system " . "(" . $octNumber . ") \n");
+        echo ($input . " is a palindrome in octal (8) system " . "[" . $octNumber . "] \n");
     }
 
     if ($decFlag == true)
     {
-        echo ($input . " is a palindrome in decimal system " . "(" . $decNumber . ") \n");
+        echo ($input . " is a palindrome in decimal (10) system " . "[" . $decNumber . "] \n");
     }
 
     if ($hexFlag == true)
     {
-        echo ($input . " is a palindrome in hexadecimal system " . "(" . $hexNumber . ") \n");
+        echo ($input . " is a palindrome in hexadecimal (16) system " . "[" . $hexNumber . "] \n");
     }
+
+    return ($input);
 }
 
-isPalindrome(101);
+isPalindrome ($inputNumber);
