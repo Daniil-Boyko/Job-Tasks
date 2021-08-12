@@ -24,6 +24,7 @@ function isPalindrome(int $input)
     $binNumber = preg_replace('/[^0-9.]+/', '', $binNumber);
     $reverseNumber = strrev($binNumber);
 
+    // checking palindrome in each number system
     if ($reverseNumber == $binNumber)
     {
         $binFlag = true;
@@ -55,4 +56,5 @@ function isPalindrome(int $input)
     {
         $hexFlag = true;
     }
+
 }
