@@ -1,34 +1,57 @@
 <?php
-$flagPat = true;
+const AMOUNT_PATIENTS = 2;
 
-class DataPatient
+class Man
 {
-    protected $namePatient;
-    protected $agePatient;
-    protected $genderPatient;
+    protected $age;
+    protected $name;
+
+    function __construct()
+    {
+        $this->age = 0;
+        $this->name = "None";
+    }
+
+    function inputMan()
+    {
+        echo "Age: ";
+        $this->age = readline();
+        echo "Name: ";
+        $this->name = readline();
+    }
+
+    function outputMan($person1)
+    {
+        echo "Age: " . $person1 -> age . "\n";
+        echo "Name: " . $person1 -> name . "\n";
+    }
+
+}
+
+class DataPatient extends Man
+{
+    protected $illness;
 
     public function __construct()
     {
-        $this->namePatient = "none";
-        $this->agePatient = 0;
+        parent::__construct();
+        $this -> illness = "none";
     }
 
     public function inputPatient()
     {
-        echo "Enter the name of the patient: ";
-        $this->namePatient = readline();
-        echo "Enter the age of the patient: ";
-        $this->agePatient = readline();
-        echo "Enter gender: ";
-        $this->genderPatient = readline();
+        echo "Input patient № \n";
+        parent::inputMan();
+        echo "Illness: ";
+        $this->illness = readline();
     }
 
-    public function outputPatient()
+    public function outputPatient($person2)
     {
         echo "--------Patient's part-------- \n";
-        echo "Name: " . $this->namePatient . "\n";
-        echo "Age: " . $this->agePatient . "\n";
-        echo "Sex: " . $this->genderPatient . "\n";
+        echo "Patient № \n";
+        parent::outputMan($person2);
+        echo "Illness: " . $person2->illness . "\n";
     }
 }
 
@@ -36,45 +59,60 @@ echo "----------------------------------- \n";
 
 class DoctorsServices extends DataPatient
 {
-    protected $nameDoctor;
-    protected $specDoctor;
-    protected $illness;
-    protected $number;
+    protected $speciality;
 
-    public function __construct()
+
+    function __construct()
     {
         parent::__construct();
-        $this->nameDoctor = "none";
-        $this->specDoctor = "none";
-        $this->illness = "none";
-        $this->number = 0;
+        $this->speciality = "None";
     }
 
     public function inputDoctor()
     {
-        echo "Enter the number of your patient: ";
-        $this->number = readline();
-        parent::inputPatient();
-        echo "Enter the specialization: ";
-        $this->specDoctor = readline();
-        echo "Enter your name and credentials (by doctor): ";
-        $this->nameDoctor = readline();
-        echo "Enter the illness: ";
-        $this->illness = readline();
+        echo "Input doctor № \n";
+        parent::inputMan();
+        echo "Speciality: ";
+        $this->speciality = readline();
     }
 
     public function outputPatData()
     {
-        echo "\n \n \n";
-        echo "Patient №" . $this->number . "\n";
-        parent::outputPatient();
-        echo "--------Doctor's part-------- \n";
-        echo "Illness: " . $this->illness . "\n";
-        echo "Specialization: " . $this->specDoctor . "\n";
-        echo "Name and credentials (doctor): " . $this->nameDoctor . "\n";
+        echo "Doctor № \n";
+        parent::outputMan();
+        echo "Speciality: " . $this->speciality . "\n";
     }
 }
 
+
 $doctorInfo = new DoctorsServices();
-$doctorInfo->inputDoctor();
-$doctorInfo->outputPatData();
+
+class Hospital extends DataPatient
+{
+    private $arrayPatient = array();
+
+    function inputHospital()
+    {
+        for ($i = 0; $i < AMOUNT_PATIENTS; $i++)
+        {
+            $ii = $i+1;
+            echo "Count of patients: " . $ii . "\n";
+            $patient = new DataPatient();
+            $patient -> inputPatient();
+            $this -> arrayPatient[$i] = $patient;
+        }
+    }
+
+    function print_hos()
+    {
+        for ($i = 0; $i < AMOUNT_PATIENTS; $i++)
+        {
+            $newPatient = $this -> arrayPatient[$i];
+            $this -> outputPatient($newPatient);
+        }
+    }
+}
+
+$hos = new Hospital();
+$hos -> inputHospital();
+$hos -> print_hos();
