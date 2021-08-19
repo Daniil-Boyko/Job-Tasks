@@ -7,9 +7,9 @@ class MinistryOfHealth extends hospital
         $this -> inputID();
     }
 
-    function outputResultInfo ($result4)
+    function outputResultInfo ()
     {
         echo "-----INFORMATION BOARD----- \n";
-        $this -> outputInfo($result4);
+        $this -> outputInfo();
     }
 }
