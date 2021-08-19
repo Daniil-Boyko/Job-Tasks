@@ -4,18 +4,17 @@ spl_autoload_register(function ($className){
     include $className . '.php';
 });
 
-$newPatient = new patient;
-$newDoctor = new doctor;
+$factory = new Factory;
 
 // echo "Enter number to output patients/doctors (P - patients, D - doctors): ";
 // $modeNumber = readline ();
-$result = government::getInstance($newPatient,$newDoctor);
+$result = $factory -> build();
 $result -> inputListPatient ();
 $result -> outputListPatient ();
 $result -> inputListDoctor ();
 $result -> outputListDoctor ();
 
-$result2 = government::getInstance($newPatient,$newDoctor);
+$result2 = $factory -> build();
 $result2 -> inputListPatient ();
 $result2 -> outputListPatient ();
 $result2 -> inputListDoctor ();
