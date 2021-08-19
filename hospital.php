@@ -15,10 +15,10 @@ class hospital extends doctor
         $this -> inputDoctor();
     }
 
-    function outputInfo ($result3)
+    function outputInfo ()
     {
-        echo "Patient ID: " . $result3 -> patientID . "\n";
-        $this -> outputDoctor($result3);
+        echo "Patient ID: " . $this -> patientID . "\n";
+        $this -> outputDoctor();
 
     }
 }

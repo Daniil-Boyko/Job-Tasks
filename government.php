@@ -1,30 +1,84 @@
 <?php
 
-class government extends MinistryOfHealth
+class government
 {
     /**
-     * @var array
+     * @var patient[]
+     * @var doctor[]
      */
 
-    private array $DataSummary = [];
+    private $listPatients = [];
+    private $listDoctors = [];
+    protected int $numberPatient;
+    protected int $numberDoctor;
 
-    function inputGovernment ()
+    private function __construct(patient $newPatient, doctor $newDoctor)
     {
-        for ($i = 0; $i < AMOUNT_ARRAY; $i++)
+        $this -> listPatients[] = $newPatient;
+        $this -> listDoctors[] = $newDoctor;
+        echo "new object created \n";
+    }
+
+    public static function getInstance ($newPatient,$newDoctor)
+    {
+        static $instance = null;
+        if (null == $instance)
         {
-            $card = new MinistryOfHealth;
-            $card -> inputResultInfo();
-            $this -> DataSummary[$i] = $card;
+            $instance = new static($newPatient, $newDoctor);
+        }
+        else {
+            echo "ERROR: using existing class \n";
+        }
+        return $instance;
+    }
+
+    function inputListPatient()
+    {
+        echo "Count of Patients: ";
+        $this -> numberPatient = readline ();
+        echo "--- \n";
+        for ($i = 0; $i < ($this -> numberPatient); $i++)
+        {
+            echo "Patient [".($i+1)."] \n";
+            $newPatient = new patient;
+            $newPatient -> inputHuman();
+            $this -> listPatients[$i] = $newPatient;
+            echo "--- \n";
         }
     }
 
-    function outputGovernment ()
+    function inputListDoctor()
     {
-        for ($i = 0; $i < AMOUNT_ARRAY; $i++)
+        echo "Count of Doctors: ";
+        $this -> numberDoctor = readline ();
+        echo "--- \n";
+        for ($i = 0; $i < ($this -> numberDoctor); $i++)
         {
-            $newCard = $this -> DataSummary[$i];
-            $this -> outputResultInfo($newCard);
-            echo "\n \n \n";
+            echo "Doctor [".($i+1)."] \n";
+            $newDoctor = new doctor;
+            $newDoctor -> inputHuman();
+            echo "--- \n";
+            $this -> listDoctors[$i] = $newDoctor;
+        }
+    }
+
+    function outputListPatient()
+    {
+        for ($i = 0; $i < ($this -> numberPatient); $i++)
+        {
+            echo "PATIENT'S CARD [" . ($i+1) . "] \n";
+            $this -> listPatients[$i] -> outputHuman();
+            echo "\n \n";
+        }
+    }
+
+    function outputListDoctor()
+    {
+        for ($i = 0; $i < ($this -> numberDoctor); $i++)
+        {
+            echo "DOCTOR'S CARD [" . ($i+1) . "] \n";
+            $this -> listDoctors[$i] -> outputHuman();
+            echo "\n \n";
         }
     }
 }

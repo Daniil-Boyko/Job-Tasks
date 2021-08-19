@@ -13,7 +13,7 @@ class patient
         $this -> specialityPatient = "None";
     }
 
-    function inputPatient ()
+    function inputHuman ()
     {
         echo "Enter name: ";
         $this -> namePatient = readline ();
@@ -23,11 +23,10 @@ class patient
         $this -> specialityPatient = readline ();
     }
 
-    function outputPatient ($result1)
+    function outputHuman ()
     {
-        echo "-----PATIENT'S CARD----- \n";
-        echo "Name: " . $result1 -> namePatient . "\n";
-        echo "Age: " . $result1 -> agePatient . "\n";
-        echo "Speciality: " . $result1 -> specialityPatient . "\n";
+        echo "Name: " . $this -> namePatient . "\n";
+        echo "Age: " . $this -> agePatient . "\n";
+        echo "Speciality: " . $this -> specialityPatient . "\n";
     }
 }

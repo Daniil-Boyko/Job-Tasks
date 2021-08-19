@@ -3,33 +3,30 @@
 class doctor extends patient
 {
     protected string $nameDoctor;
-    protected string $illness;
-    protected string $dateReceipt;
+    protected string $profession;
+    protected int $polyclinicNumber;
 
     function __construct ()
     {
         $this -> nameDoctor = "None";
-        $this -> illness = "None";
-        $this -> dateReceipt = "None";
+        $this -> profession = "None";
+        $this -> polyclinicNumber = 0;
     }
 
-    function inputDoctor ()
+    function inputHuman ()
     {
-        $this -> inputPatient();
         echo "Enter doctor's name: ";
         $this -> nameDoctor = readline ();
-        echo "Enter illness: ";
-        $this -> illness = readline ();
-        echo "Enter date of receipt: ";
-        $this -> dateReceipt = readline ();
+        echo "Enter profession: ";
+        $this -> profession = readline ();
+        echo "Enter number of doctor's polyclinic: ";
+        $this -> polyclinicNumber = readline ();
     }
 
-    function outputDoctor ($result2)
+    function outputHuman ()
     {
-        $this -> outputPatient($result2);
-        echo "-----DOCTOR'S CARD----- \n";
-        echo "Name: " . $result2 -> nameDoctor . "\n";
-        echo "Illness: " . $result2 -> illness . "\n";
-        echo "Date of receipt: " . $result2 -> dateReceipt . "\n";
+        echo "Name: " . $this -> nameDoctor . "\n";
+        echo "Profession: " . $this -> profession . "\n";
+        echo "Polyclinic's Number: " . $this -> polyclinicNumber . "\n";
     }
 }
