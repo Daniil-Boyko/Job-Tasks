@@ -1,6 +1,6 @@
 <?php
 
-class hospital extends doctor
+class Hospital extends Doctor
 {
     protected int $patientID;
     function __construct ()

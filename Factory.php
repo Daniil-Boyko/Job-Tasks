@@ -6,21 +6,21 @@ class Factory
     {
         $newPatient = $this -> buildPatient();
         $newDoctor = $this -> buildDoctor();
-        return $this->buildGovernment($newPatient, $newDoctor);
+        return $this -> buildGovernment($newPatient, $newDoctor);
     }
 
     public function buildGovernment ($newPatient, $newDoctor)
     {
-        return government::getInstance($newPatient,$newDoctor);
+        return Government::getInstance($newPatient,$newDoctor);
     }
 
-    public function buildPatient ():patient
+    public function buildPatient ():Patient
     {
-        return new patient();
+        return new Patient();
     }
 
-    public function buildDoctor ():doctor
+    public function buildDoctor ():Doctor
     {
-        return new doctor();
+        return new Doctor();
     }
 }

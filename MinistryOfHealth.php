@@ -1,5 +1,5 @@
 <?php
-class MinistryOfHealth extends hospital
+class MinistryOfHealth extends Hospital
 {
 
     function inputResultInfo ()
