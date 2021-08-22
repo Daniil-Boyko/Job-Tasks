@@ -1,6 +1,6 @@
 <?php
 
-class patient
+class Patient
 {
     protected int $agePatient;
     protected string $namePatient;

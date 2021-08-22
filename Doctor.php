@@ -1,6 +1,6 @@
 <?php
 
-class doctor extends patient
+class Doctor extends Patient
 {
     protected string $nameDoctor;
     protected string $profession;

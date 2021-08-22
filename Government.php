@@ -1,10 +1,10 @@
 <?php
 
-class government
+class Government
 {
     /**
-     * @var patient[]
-     * @var doctor[]
+     * @var Patient[]
+     * @var Doctor[]
      */
 
     private $listPatients = [];
@@ -12,11 +12,11 @@ class government
     protected int $numberPatient;
     protected int $numberDoctor;
 
-    private function __construct(patient $newPatient, doctor $newDoctor)
+    private function __construct(Patient $newPatient, Doctor $newDoctor)
     {
         $this -> listPatients[] = $newPatient;
         $this -> listDoctors[] = $newDoctor;
-        echo "new object created \n";
+        // echo "new object created \n";
     }
 
     public static function getInstance ($newPatient,$newDoctor)
@@ -40,7 +40,7 @@ class government
         for ($i = 0; $i < ($this -> numberPatient); $i++)
         {
             echo "Patient [".($i+1)."] \n";
-            $newPatient = new patient;
+            $newPatient = new Patient;
             $newPatient -> inputHuman();
             $this -> listPatients[$i] = $newPatient;
             echo "--- \n";
@@ -55,7 +55,7 @@ class government
         for ($i = 0; $i < ($this -> numberDoctor); $i++)
         {
             echo "Doctor [".($i+1)."] \n";
-            $newDoctor = new doctor;
+            $newDoctor = new Doctor;
             $newDoctor -> inputHuman();
             echo "--- \n";
             $this -> listDoctors[$i] = $newDoctor;
@@ -64,6 +64,7 @@ class government
 
     function outputListPatient()
     {
+        echo "LIST OF PATIENTS: " . date('r') . " \n";
         for ($i = 0; $i < ($this -> numberPatient); $i++)
         {
             echo "PATIENT'S CARD [" . ($i+1) . "] \n";
@@ -74,6 +75,7 @@ class government
 
     function outputListDoctor()
     {
+       echo "LIST OF DOCTORS: " . date('r') . " \n";
         for ($i = 0; $i < ($this -> numberDoctor); $i++)
         {
             echo "DOCTOR'S CARD [" . ($i+1) . "] \n";
@@ -81,4 +83,25 @@ class government
             echo "\n \n";
         }
     }
+
+    function outputAllInfo ()
+    {
+        echo date('r') . "\n";
+        echo "-----LIST OF PATIENTS----- ";
+        for ($i = 0; $i < ($this -> numberPatient); $i++)
+        {
+            echo "PATIENT'S CARD [" . ($i+1) . "] \n";
+            $this -> listPatients[$i] -> outputHuman();
+            echo "\n \n";
+        }
+
+        echo "-----LIST OF DOCTORS----- \n";
+        for ($i = 0; $i < ($this -> numberDoctor); $i++)
+        {
+            echo "DOCTOR'S CARD [" . ($i+1) . "] \n";
+            $this -> listDoctors[$i] -> outputHuman();
+            echo "\n \n";
+        }
+    }
+
 }
