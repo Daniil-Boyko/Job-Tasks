@@ -7,12 +7,12 @@ class Government
      * @var Doctor[]
      */
 
-    private $listPatients = [];
-    private $listDoctors = [];
+    private array $listPatients = [];
+    private array $listDoctors = [];
     protected int $numberPatient;
     protected int $numberDoctor;
 
-    private function __construct(Patient $newPatient, Doctor $newDoctor)
+    private function __construct (Patient $newPatient, Doctor $newDoctor)
     {
         $this -> listPatients[] = $newPatient;
         $this -> listDoctors[] = $newDoctor;
@@ -24,9 +24,10 @@ class Government
         static $instance = null;
         if (null == $instance)
         {
-            $instance = new static($newPatient, $newDoctor);
+            $instance = new static ($newPatient, $newDoctor);
         }
-        else {
+        else
+        {
             echo "ERROR: using existing class \n";
         }
         return $instance;
@@ -87,7 +88,7 @@ class Government
     function outputAllInfo ()
     {
         echo date('r') . "\n";
-        echo "-----LIST OF PATIENTS----- ";
+        echo "-----LIST OF PATIENTS----- \n";
         for ($i = 0; $i < ($this -> numberPatient); $i++)
         {
             echo "PATIENT'S CARD [" . ($i+1) . "] \n";
