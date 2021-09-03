@@ -2,7 +2,7 @@
 
 class Patient
 {
-    protected int $agePatient;
+    protected string $agePatient;
     protected string $namePatient;
     protected string $specialityPatient;
 
