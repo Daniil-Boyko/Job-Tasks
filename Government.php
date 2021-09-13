@@ -7,12 +7,14 @@ class Government
      * @var Doctor[]
      */
 
-    private $listPatients = [];
-    private $listDoctors = [];
-    protected int $numberPatient;
-    protected int $numberDoctor;
+    private array $listPatients = [];
+    private array $listDoctors = [];
+    protected int $numberPatient = 0;
+    protected int $numberDoctor = 0;
+    protected $filename;
+    protected $data;
 
-    private function __construct(Patient $newPatient, Doctor $newDoctor)
+    private function __construct (Patient $newPatient, Doctor $newDoctor)
     {
         $this -> listPatients[] = $newPatient;
         $this -> listDoctors[] = $newDoctor;
@@ -24,9 +26,10 @@ class Government
         static $instance = null;
         if (null == $instance)
         {
-            $instance = new static($newPatient, $newDoctor);
+            $instance = new static ($newPatient, $newDoctor);
         }
-        else {
+        else
+        {
             echo "ERROR: using existing class \n";
         }
         return $instance;
@@ -35,9 +38,9 @@ class Government
     function inputListPatient()
     {
         echo "Count of Patients: ";
-        $this -> numberPatient = readline ();
+        $inputNumberPatient = readline ();
         echo "--- \n";
-        for ($i = 0; $i < ($this -> numberPatient); $i++)
+        for ($i = $this -> numberPatient; $i < ($inputNumberPatient + $this -> numberPatient); $i++)
         {
             echo "Patient [".($i+1)."] \n";
             $newPatient = new Patient;
@@ -45,6 +48,7 @@ class Government
             $this -> listPatients[$i] = $newPatient;
             echo "--- \n";
         }
+        $this -> numberPatient = $inputNumberPatient + $this -> numberPatient;
     }
 
     function inputListDoctor()
@@ -62,7 +66,7 @@ class Government
         }
     }
 
-    function outputListPatient()
+    function outputListPatient(): array
     {
         echo "LIST OF PATIENTS: " . date('r') . " \n";
         for ($i = 0; $i < ($this -> numberPatient); $i++)
@@ -71,6 +75,10 @@ class Government
             $this -> listPatients[$i] -> outputHuman();
             echo "\n \n";
         }
+//        $this -> filename = 'arrayPatient.txt';
+//        $data = serialize($this -> listPatients);
+//        file_put_contents($this -> filename, $data);
+        return ($this->listPatients);
     }
 
     function outputListDoctor()
@@ -87,7 +95,7 @@ class Government
     function outputAllInfo ()
     {
         echo date('r') . "\n";
-        echo "-----LIST OF PATIENTS----- ";
+        echo "-----LIST OF PATIENTS----- \n";
         for ($i = 0; $i < ($this -> numberPatient); $i++)
         {
             echo "PATIENT'S CARD [" . ($i+1) . "] \n";
