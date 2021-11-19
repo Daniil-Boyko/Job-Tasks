@@ -6,7 +6,7 @@ class Government
      * @var Patient[]
      * @var Doctor[]
      */
-
+#sdasdadasdasdasdasdasdadsadasdasdadasdasdasd
     private array $listPatients = [];
     private array $listDoctors = [];
     protected int $numberPatient = 0;
